@@ -1,0 +1,17 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: blob-storage
+  namespace: default
+spec:
+  type: bindings.azure.blobstorage
+  version: v1
+  metadata:
+  - name: storageAccount
+    value: dapr1batch
+  - name: storageAccessKey
+    secretKeyRef:
+          name: output-queue-secret
+          key: connectionString
+  - name: container
+    value: orders
