@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filesize-metric-provider
+  labels:
+    app: filesize-metric-provider
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filesize-metric-provider
+  template:
+    metadata:
+      labels:
+        app: filesize-metric-provider
+    spec:
+      containers:
+      - name: filesize-metric-provider
+        image: dapr1batch.azurecr.io/filesize-metric-provider:v1
+        ports:
+        - containerPort: 8084
+        imagePullPolicy: Always
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: filesize-metric-provider-service
+  labels:
+    app: filesize-metric-provider
+spec:
+  selector:
+    app: filesize-metric-provider
+  ports:
+    - name: filesize-metric-provider
+      protocol: TCP
+      port: 80
+      targetPort: 8084
+  type: ClusterIP
