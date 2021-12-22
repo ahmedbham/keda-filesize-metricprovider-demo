@@ -1,7 +1,6 @@
 storageAccountName="<storage-account-name>"
 resourceGroupName="<resource-group-name>"
 location="<location>"
-sasExpirationDate="<YYYY-MM-DD>"
 
 echo "Creating storage account..."
 az storage account create \
@@ -17,14 +16,5 @@ az storage container create \
     --account-name $storageAccountName \
     --auth-mode login
     
-echo "Generating SAS..."
-az storage account generate-sas \
-    --account-name $storageAccountName \
-    --expiry $sasExpirationDate \
-    --https-only \
-    --permissions rwdlacup \
-    --resource-types sco \
-    --services bfqt
-    
-echo "Getting storage account access keys..."
-az storage account keys list --account-name $storageAccountName
+echo "Getting storage account connection string..."
+az storage account show-connection-string --name $storageAccountName --resource-group $resourceGroupName

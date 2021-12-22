@@ -18,8 +18,14 @@ spec:
       - name: filesize-metric-provider
         image: dapr1batch.azurecr.io/filesize-metric-provider:v1
         ports:
-        - containerPort: 8084
+        - containerPort: 8080
         imagePullPolicy: Always
+        env:
+          - name: KEDA_CONN_STRING
+            valueFrom:
+              secretKeyRef:
+                name: keda-queue-secret
+                key: queue.connectStr
 ---
 
 kind: Service
@@ -35,5 +41,5 @@ spec:
     - name: filesize-metric-provider
       protocol: TCP
       port: 80
-      targetPort: 8084
+      targetPort: 8080
   type: ClusterIP

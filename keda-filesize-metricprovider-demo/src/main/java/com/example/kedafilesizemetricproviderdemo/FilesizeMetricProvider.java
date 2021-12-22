@@ -1,3 +1,6 @@
+package com.example.kedafilesizemetricproviderdemo;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -222,16 +225,20 @@ class StorageDiagnostics {
 
 @RestController
 public class FilesizeMetricProvider {
-    
-  static final String BINDING_NAME = "dapr-batch-queue";
-  static final String connectStr = "DefaultEndpointsProtocol=https;AccountName=dapr1batch;AccountKey=cri0BZd4CXMBBLqLmFcGXuGd9GpGOPnkJr2CfDhqNzPLDeOrcfXjOa/HbDfafLqXWIrlISIJL7WcSY6w9LfptA==;EndpointSuffix=core.windows.net";
 
+  @Value("${queue.binding_name}")
+  private String BINDING_NAME;
+
+  @Value("${queue.connectStr}")
+  private String connectStr;
+    
+  
   @GetMapping(value = "/")
   public Stats getBlobStats() {
 
     String filesize = "";
     Stats stats = new Stats();
-    stats.tasks = 1;
+    stats.tasks = 0;
 
     try {
       // Instantiate a QueueClient which will be
@@ -257,16 +264,21 @@ public class FilesizeMetricProvider {
           var data = event.getData();
           if (null != data) {
             filesize = Long.toString(data.getContentLength());
-            
-            if (Integer.valueOf(filesize) > 100000 && Integer.valueOf(filesize) < 500000) {
-              stats.tasks = 5;
-            } else if (Integer.valueOf(filesize) >= 500000) {
+            System.out.println("file size: " + filesize);
+            if (Integer.valueOf(filesize) > 100000 && Integer.valueOf(filesize) < 1000000) {
               stats.tasks = 3;
+              System.out.println("tasks set to three: " + stats.tasks);
+            } else if (Integer.valueOf(filesize) >= 1000000) {
+              stats.tasks = 5;
+              System.out.println("tasks set to five: " + stats.tasks);
             }
           }
 
         }
         queueClient.deleteMessage(message.getMessageId(), message.getPopReceipt());
+      }
+      else {
+        System.out.println("no new files in queue");
       }
     } catch (QueueStorageException e) {
       // Output the exception message and stack trace

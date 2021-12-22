@@ -1,0 +1,17 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: fileprocessor-scaledobject
+  labels:
+    deploymentName: filesize-metric-provider-scaler
+spec:
+  maxReplicaCount: 10
+  pollingInterval:  60
+  scaleTargetRef:
+    name: file-processor
+  triggers:
+    - type: metrics-api
+      metadata:
+        targetValue: "1"
+        url: "http://filesize-metric-provider-service.default.svc.cluster.local"
+        valueLocation: "tasks"
