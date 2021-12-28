@@ -226,11 +226,11 @@ class StorageDiagnostics {
 @RestController
 public class FilesizeMetricProvider {
 
-  @Value("${queue.binding_name}")
-  private String BINDING_NAME;
+  @Value("${queue_name}")
+  private String QUEUE_NAME;
 
-  @Value("${queue.connectStr}")
-  private String connectStr;
+  @Value("${connection_string}")
+  private String CONNECTION_STRING;
     
   
   @GetMapping(value = "/")
@@ -244,8 +244,8 @@ public class FilesizeMetricProvider {
       // Instantiate a QueueClient which will be
       // used to create and manipulate the queue
       QueueClient queueClient = new QueueClientBuilder()
-          .connectionString(connectStr)
-          .queueName(BINDING_NAME)
+          .connectionString(CONNECTION_STRING)
+          .queueName(QUEUE_NAME)
           .buildClient();
 
       // Get the first queue message

@@ -25,6 +25,6 @@ docker push $acrLoginServer/filesize-metric-provider:v1
 cd ..
 
 # Deploy to AKS cluster
-kubectl delete -f deploy/filesize-metric-provider.yaml
+kubectl delete -f deploy/java/filesize-metric-provider.yaml
 sleep 10
-kubectl apply -f deploy/filesize-metric-provider.yaml
+kubectl apply -f deploy/java/filesize-metric-provider.yaml

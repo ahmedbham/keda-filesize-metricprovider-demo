@@ -4,8 +4,11 @@
 * kubectl
 * Azure CLI
 * Helm3
-* Java JDK11
-* Maven
+* for Java based metric provider API
+  * Java JDK11
+  * Maven
+* for Python based metric provider API
+  * python3
 
 ## Set up Cluster
 
@@ -27,7 +30,7 @@ References:
 1. Run [this script](deploy/deploy_storage.sh).
 
 2. create the Kubernetes secret (replace *** with storage account Connection String):
-     `kubectl create secret generic queue-connect-string --from-literal=queue.connString=*********`
+     `kubectl create secret generic queue-connect-string --from-literal=CONNECTION_STRING=*********`
 
 3. Create one Storage Account Queue, named "keda-queue" in the same Storage Account.
 
@@ -67,9 +70,13 @@ References:
 
 run `kubectl create deployment hello-pod --image=k8s.gcr.io/echoserver:1.4`
 
-## Build and Deploy Filesize Metric Provider pod and service
+## Option 1: Build and Deploy Python Filesize Metric Provider pod and service
 
-run `deploy/filesize-metric-provider.sh`
+run `deploy/python/filesize-metric-provider.sh`
+
+## Option 2: Build and Deploy Java Filesize Metric Provider pod and service
+
+run `deploy/java/filesize-metric-provider.sh`
 
 ## Deploy Keda ScaleObject
 
