@@ -1,4 +1,4 @@
-cd keda-filesize-metricprovider-demo
+cd keda-filesize-metricprovider-java
 
 echo "mvn install filesize-metric-provider"
 ./mvnw clean install

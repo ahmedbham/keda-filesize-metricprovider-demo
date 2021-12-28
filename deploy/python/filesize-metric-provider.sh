@@ -1,4 +1,4 @@
-cd keda-filesize-metricprovider-app
+cd keda-filesize-metricprovider-python
 
 pip install -r requirements.txt
 
