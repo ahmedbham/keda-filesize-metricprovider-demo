@@ -1,0 +1,3 @@
+aks_cluster_name=myAKSCluster
+AZURE_STORAGE_ACCOUNT=kedafilesizestorage
+AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=kedafilesizestorage;AccountKey=QDrxI0tRfQA+BNSMCu98Dtpc7gSGZzeMu/5jjmKWOCaw1LQI4xVcV13ThGyzITmv2JH7YGjLxwVbjct59+/0IQ=="
