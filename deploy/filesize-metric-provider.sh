@@ -3,8 +3,7 @@ cd keda-filesize-metricprovider-app
 pip install -r requirements.txt
 
 echo "Pushing filesize-metric-provider image to ACR"
-acrLoginServer="dapr1batch.azurecr.io"
-acrName="dapr1batch"
+acrLoginServer="$acrName.azurecr.io"
 
 docker build -t $acrLoginServer/filesize-metric-provider:v1 .
 
@@ -17,6 +16,4 @@ docker push $acrLoginServer/filesize-metric-provider:v1
 cd ..
 
 # Deploy to AKS cluster
-kubectl delete -f deploy/python/filesize-metric-provider.yaml
-sleep 10
-kubectl apply -f deploy/python/filesize-metric-provider.yaml
+kubectl apply -f deploy/filesize-metric-provider.yaml

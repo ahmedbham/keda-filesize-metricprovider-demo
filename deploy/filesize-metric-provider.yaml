@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: filesize-metric-provider
-        image: dapr1batch.azurecr.io/filesize-metric-provider:v1
+        image: ACR_NAME.azurecr.io/filesize-metric-provider:v1
         ports:
         - containerPort: 5000
         imagePullPolicy: Always

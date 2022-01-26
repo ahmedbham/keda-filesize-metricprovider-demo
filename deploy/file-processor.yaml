@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-processor
+  template:
+    metadata:
+      labels:
+        service: file-processor
+        app: file-processor
+    spec:
+      containers:
+      - image: k8s.gcr.io/echoserver:1.4
+        name: file-processor
+        resources:
+          limits:
+            cpu: 1
+            memory: 128Mi
+          requests:
+            cpu: 1
+            memory: 128Mi

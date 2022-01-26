@@ -1,6 +1,6 @@
-storageAccountName="<storage-account-name>"
-resourceGroupName="<resource-group-name>"
-location="<location>"
+storageAccountName="kedafilesizestorage"
+resourceGroupName="ca-rg"
+location="eastus"
 
 echo "Creating storage account..."
 az storage account create \
