@@ -56,15 +56,14 @@
 1. Run `export storageAccountName="kedafilesizestorage"`
 2. Run the following command:
 
-   ```bash
-
+```bash
    az storage account create \
     --name $storageAccountName \
     --resource-group $resourceGroupName \
     --location $location \
     --sku Standard_RAGRS \
     --kind StorageV2
-    ```
+```
 
    * Run `az storage account show -n <storageAccountName>` to verify if storage account was created successfully
    * Run `export connectionString=$(az storage account show-connection-string -n $storageAccountName -o tsv)`
