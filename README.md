@@ -22,7 +22,8 @@
    * Run `az acr create --name $acr_name --sku Basic`
 
 4. Create an AKS Cluster
-   * Run: ```bash
+   * Run: 
+   ```bash
           az aks create \
           --name $aks_cluster_name \
           --node-count 1 \
