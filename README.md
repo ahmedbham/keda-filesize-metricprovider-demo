@@ -36,7 +36,7 @@
           --enable-cluster-autoscaler \
           --min-count 1 \
           --max-count 3
-          ```
+  ```
 
 5. Run `az aks get-credentials -n $aks_cluster_name`
 
