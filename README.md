@@ -22,7 +22,8 @@
    * Run `az acr create --name $acr_name --sku Basic`
 
 4. Create an AKS Cluster
-   * Run: az aks create \
+   * Run: ```
+          az aks create \
           --name $aks_cluster_name \
           --node-count 1 \
           --node-vm-size Standard_A2_v2 \
@@ -34,6 +35,7 @@
           --enable-cluster-autoscaler \
           --min-count 1 \
           --max-count 3
+          ```
 
 5. Run `az aks get-credentials -n $aks_cluster_name`
 
@@ -52,6 +54,7 @@
 
 1. Run `export storageAccountName="kedafilesizestorage"`
 2. Run the following command:
+   ```
    az storage account create \
     --name $storageAccountName \
     --resource-group $resourceGroupName \
@@ -62,7 +65,7 @@
    * Run `export connectionString=$(az storage account show-connection-string -n $storageAccountName -o tsv)`
    * Run `export storageContainerName=order`
    * Run `az storage container create -n $storageContainerName --auth-mode login --connection-string $connectionString`
-
+   ```
 3. Create the Kubernetes secret (replace *** with storage account Connection String):
     * Run `kubectl create secret generic queue-connect-string --from-literal=CONNECTION_STRING=$connectionString`
 
