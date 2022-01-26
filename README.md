@@ -23,7 +23,8 @@
 
 4. Create an AKS Cluster
    * Run: 
-   ```bash
+```bash
+   
           az aks create \
           --name $aks_cluster_name \
           --node-count 1 \
@@ -36,7 +37,7 @@
           --enable-cluster-autoscaler \
           --min-count 1 \
           --max-count 3
-  ```
+```
 
 5. Run `az aks get-credentials -n $aks_cluster_name`
 
@@ -57,6 +58,7 @@
 2. Run the following command:
 
 ```bash
+
    az storage account create \
     --name $storageAccountName \
     --resource-group $resourceGroupName \
