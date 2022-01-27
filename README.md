@@ -15,7 +15,7 @@
    * export acr_name=filesizeacr
 
 2. Create Resource Group
-   * Run `az create group -n $resourceGroupName -l $location`
+   * Run `az group create -n $resourceGroupName -l $location`
    * Run `az configure --defaults group=$resourceGroupName location=$location`
 
 3. Create an Azure Container Registry (ACR) (Lowercase registry name is recommended to avoid warnings):
