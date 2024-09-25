@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javascript-docker
+  labels:
+    app: javascript-docker
+    kubernetes.azure.com/generator: devhub
+  namespace: keda-filesize-metricprovider-python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: javascript-docker
+  template:
+    metadata:
+      labels:
+        app: javascript-docker
+    spec:
+      containers:
+        - name: javascript-docker
+          image: k8strainingbham.azurecr.io/keda-filesize-metricprovider:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
